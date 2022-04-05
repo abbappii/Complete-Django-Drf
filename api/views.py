@@ -1,14 +1,12 @@
-from django.shortcuts import render
-import json
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from base.models import BaseProduct
+from base.serializers import ProductSerializer
 
-from django.http import JsonResponse
+@api_view(['GET'])
+def api_home(request):
 
-def api_home(request, *args, **kwargs):
-    body = request.body
-    data  = {}
-    try:
-        data = json.loads(body)
-    except:
-        pass
-
-    return JsonResponse(data)
+    query = BaseProduct.objects.all()
+    serializer = ProductSerializer(query, many=True)
+   
+    return Response(serializer.data)
