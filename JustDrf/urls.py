@@ -20,5 +20,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/',include('api.urls')),
     path('api/products/',include('base.urls')),
-
+    path('api/viewsets/',include('JustDrf.routers')),
 ]

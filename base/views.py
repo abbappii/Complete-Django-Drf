@@ -1,6 +1,6 @@
 
 from cgitb import lookup
-from rest_framework import generics, mixins
+from rest_framework import authentication, generics, mixins, permissions
 from .models import BaseProduct
 from .serializers import ProductSerializer
 from base import serializers
@@ -13,7 +13,7 @@ from django.shortcuts import get_object_or_404
 class ProductListCreateAPIView(generics.ListCreateAPIView):
     queryset = BaseProduct.objects.all()
     serializer_class = ProductSerializer
-
+    
     def perform_create(self, serializer):
         print(serializer.validated_data)
         title = serializer.validated_data.get('title')
