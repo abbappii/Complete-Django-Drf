@@ -10,6 +10,9 @@ from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
 
 
+# ------------------------------------------------------------------------------
+# generics view practice 
+
 class ProductListCreateAPIView(generics.ListCreateAPIView):
     queryset = BaseProduct.objects.all()
     serializer_class = ProductSerializer
@@ -58,6 +61,7 @@ class ProductDeleteAPIVIEW(generics.DestroyAPIView):
 #     serializer_class = ProductSerializer
 
 # ---------------------------------------------------------------------
+
 # generics mixin view 
 class ProductMixinView(
     mixins.CreateModelMixin,
@@ -87,6 +91,7 @@ class ProductMixinView(
             content = 'it was none that is the reason to add content here.'
         serializer.save(content=content)
 
+# ----------------------------------------------------------------------
 # --------------------------------------------------------------------
 # function base view get, list, create 
 @api_view(['GET','POST'])
